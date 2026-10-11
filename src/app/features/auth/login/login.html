@@ -1,0 +1,346 @@
+<section class="login-page">
+  <div class="login-page__backdrop" aria-hidden="true"></div>
+  <div class="login-page__glow" aria-hidden="true"></div>
+
+  <div class="login-page__shell">
+    <aside class="brand-panel">
+      <header class="brand-panel__header">
+        <div class="minsa-logo">
+          <img
+            class="minsa-logo__img"
+            src="/assets/images/logos/punta-gorda-seal.jpg"
+            width="120"
+            height="120"
+            alt="Punta Gorda Town Council"
+            decoding="async"
+          />
+        </div>
+
+        <div class="header-divider" aria-hidden="true"></div>
+
+        <div class="app-mark">
+          <span class="app-mark__name">BMRP-Puntagorda</span>
+          <span class="app-mark__tag">{{ 'APP.TAGLINE' | translate }}</span>
+        </div>
+      </header>
+
+      <div class="brand-panel__hero">
+        <h1 class="brand-panel__title">{{ 'LOGIN.HEADLINE' | translate }}</h1>
+
+        <ul class="feature-row">
+          <li>
+            <span class="feature-row__icon feature-row__icon--green" aria-hidden="true">
+              <svg lucidePill [size]="26" [strokeWidth]="1.7"></svg>
+            </span>
+            <span>{{ 'LOGIN.FEATURES.MEDICINES' | translate }}</span>
+          </li>
+          <li>
+            <span class="feature-row__icon feature-row__icon--blue" aria-hidden="true">
+              <svg lucideShieldCheck [size]="26" [strokeWidth]="1.7"></svg>
+            </span>
+            <span>{{ 'LOGIN.FEATURES.PURCHASES' | translate }}</span>
+          </li>
+          <li>
+            <span class="feature-row__icon feature-row__icon--purple" aria-hidden="true">
+              <svg lucideHospital [size]="26" [strokeWidth]="1.7"></svg>
+            </span>
+            <span>{{ 'LOGIN.FEATURES.HOSPITALS' | translate }}</span>
+          </li>
+          <li>
+            <span class="feature-row__icon feature-row__icon--orange" aria-hidden="true">
+              <svg lucideChartColumn [size]="26" [strokeWidth]="1.7"></svg>
+            </span>
+            <span>{{ 'LOGIN.FEATURES.TRANSPARENCY' | translate }}</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="login-panel">
+      <div class="login-panel__decor" aria-hidden="true">
+        <div class="hex-panel">
+          <svg class="hex-panel__links" viewBox="0 0 200 420" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="hexGlass" x1="20%" y1="0%" x2="80%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72" />
+                <stop offset="45%" stop-color="#b9d8ff" stop-opacity="0.48" />
+                <stop offset="100%" stop-color="#5ea0e8" stop-opacity="0.38" />
+              </linearGradient>
+              <linearGradient id="hexEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#cfe4ff" stop-opacity="0.7" />
+              </linearGradient>
+              <linearGradient id="linkGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#7eb6f0" stop-opacity="0.2" />
+                <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#7eb6f0" stop-opacity="0.25" />
+              </linearGradient>
+              <filter id="hexSoftGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <path
+              class="hex-panel__pulse-line"
+              d="M68 78 C95 95, 118 100, 132 118"
+              fill="none"
+              stroke="url(#linkGrad)"
+              stroke-width="2"
+            />
+            <path
+              class="hex-panel__pulse-line hex-panel__pulse-line--delay"
+              d="M132 118 C118 150, 100 168, 94 198"
+              fill="none"
+              stroke="url(#linkGrad)"
+              stroke-width="2"
+            />
+            <path
+              class="hex-panel__pulse-line"
+              d="M94 198 C118 220, 140 232, 148 258"
+              fill="none"
+              stroke="url(#linkGrad)"
+              stroke-width="2"
+            />
+            <path
+              class="hex-panel__pulse-line hex-panel__pulse-line--delay"
+              d="M148 258 C126 286, 108 306, 98 338"
+              fill="none"
+              stroke="url(#linkGrad)"
+              stroke-width="2"
+            />
+            <circle class="hex-panel__node" cx="68" cy="78" r="4.2" />
+            <circle class="hex-panel__node hex-panel__node--2" cx="132" cy="118" r="4.2" />
+            <circle class="hex-panel__node hex-panel__node--3" cx="94" cy="198" r="4.2" />
+            <circle class="hex-panel__node hex-panel__node--4" cx="148" cy="258" r="4.2" />
+            <circle class="hex-panel__node hex-panel__node--5" cx="98" cy="338" r="4.2" />
+          </svg>
+
+          <span class="hex hex--1">
+            <svg class="hex__shape" viewBox="0 0 100 100">
+              <polygon
+                points="50,4 93,27 93,73 50,96 7,73 7,27"
+                fill="url(#hexGlass)"
+                stroke="url(#hexEdge)"
+                stroke-width="2.4"
+                filter="url(#hexSoftGlow)"
+              />
+              <polygon
+                class="hex__sheen"
+                points="50,10 78,26 78,42 50,28 22,42 22,26"
+                fill="#fff"
+                opacity="0.22"
+              />
+            </svg>
+            <svg lucideHospital class="hex__icon" [size]="32" [strokeWidth]="1.7"></svg>
+          </span>
+          <span class="hex hex--2">
+            <svg class="hex__shape" viewBox="0 0 100 100">
+              <polygon
+                points="50,4 93,27 93,73 50,96 7,73 7,27"
+                fill="url(#hexGlass)"
+                stroke="url(#hexEdge)"
+                stroke-width="2.4"
+                filter="url(#hexSoftGlow)"
+              />
+              <polygon
+                class="hex__sheen"
+                points="50,10 78,26 78,42 50,28 22,42 22,26"
+                fill="#fff"
+                opacity="0.22"
+              />
+            </svg>
+            <svg lucidePill class="hex__icon" [size]="30" [strokeWidth]="1.7"></svg>
+          </span>
+          <span class="hex hex--3">
+            <svg class="hex__shape" viewBox="0 0 100 100">
+              <polygon
+                points="50,4 93,27 93,73 50,96 7,73 7,27"
+                fill="url(#hexGlass)"
+                stroke="url(#hexEdge)"
+                stroke-width="2.4"
+                filter="url(#hexSoftGlow)"
+              />
+              <polygon
+                class="hex__sheen"
+                points="50,10 78,26 78,42 50,28 22,42 22,26"
+                fill="#fff"
+                opacity="0.22"
+              />
+            </svg>
+            <svg lucideShoppingCart class="hex__icon" [size]="34" [strokeWidth]="1.7"></svg>
+          </span>
+          <span class="hex hex--4">
+            <svg class="hex__shape" viewBox="0 0 100 100">
+              <polygon
+                points="50,4 93,27 93,73 50,96 7,73 7,27"
+                fill="url(#hexGlass)"
+                stroke="url(#hexEdge)"
+                stroke-width="2.4"
+                filter="url(#hexSoftGlow)"
+              />
+              <polygon
+                class="hex__sheen"
+                points="50,10 78,26 78,42 50,28 22,42 22,26"
+                fill="#fff"
+                opacity="0.22"
+              />
+            </svg>
+            <svg lucideUsers class="hex__icon" [size]="30" [strokeWidth]="1.7"></svg>
+          </span>
+          <span class="hex hex--5">
+            <svg class="hex__shape" viewBox="0 0 100 100">
+              <polygon
+                points="50,4 93,27 93,73 50,96 7,73 7,27"
+                fill="url(#hexGlass)"
+                stroke="url(#hexEdge)"
+                stroke-width="2.4"
+                filter="url(#hexSoftGlow)"
+              />
+              <polygon
+                class="hex__sheen"
+                points="50,10 78,26 78,42 50,28 22,42 22,26"
+                fill="#fff"
+                opacity="0.22"
+              />
+            </svg>
+            <svg lucideFileText class="hex__icon" [size]="30" [strokeWidth]="1.7"></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="login-card">
+        <header class="login-card__header">
+          <p class="login-card__welcome">{{ 'LOGIN.WELCOME' | translate }}</p>
+          <div class="app-mark app-mark--center">
+            <span class="app-mark__name">BMRP-Puntagorda</span>
+            <span class="app-mark__tag">{{ 'APP.TAGLINE' | translate }}</span>
+          </div>
+        </header>
+
+        <form class="login-card__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <label class="field">
+            <span class="field__label">{{ 'LOGIN.USERNAME' | translate }}</span>
+            <span class="field__control" [class.field__control--invalid]="submitted() && form.controls.username.invalid">
+              <svg lucideUser class="field__icon" [size]="20" [strokeWidth]="1.8"></svg>
+              <input
+                type="text"
+                formControlName="username"
+                autocomplete="username"
+                [placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
+              />
+            </span>
+            @if (submitted() && form.controls.username.invalid) {
+              <span class="field__error">{{ 'LOGIN.ERRORS.REQUIRED_USERNAME' | translate }}</span>
+            }
+          </label>
+
+          <label class="field">
+            <span class="field__label">{{ 'LOGIN.PASSWORD' | translate }}</span>
+            <span class="field__control" [class.field__control--invalid]="submitted() && form.controls.password.invalid">
+              <svg lucideLock class="field__icon" [size]="20" [strokeWidth]="1.8"></svg>
+              <input
+                [type]="showPassword() ? 'text' : 'password'"
+                formControlName="password"
+                autocomplete="current-password"
+                [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+              />
+              <button
+                type="button"
+                class="field__toggle"
+                (click)="togglePassword()"
+                [attr.aria-label]="(showPassword() ? 'LOGIN.HIDE_PASSWORD' : 'LOGIN.SHOW_PASSWORD') | translate"
+              >
+                @if (showPassword()) {
+                  <svg lucideEye [size]="20" [strokeWidth]="1.8"></svg>
+                } @else {
+                  <svg lucideEyeOff [size]="20" [strokeWidth]="1.8"></svg>
+                }
+              </button>
+            </span>
+            @if (submitted() && form.controls.password.invalid) {
+              <span class="field__error">{{ 'LOGIN.ERRORS.REQUIRED_PASSWORD' | translate }}</span>
+            }
+          </label>
+
+          <button type="submit" class="login-card__submit">
+            <span>{{ 'LOGIN.SUBMIT' | translate }}</span>
+            <svg lucideArrowRight [size]="20" [strokeWidth]="2.2"></svg>
+          </button>
+        </form>
+
+        <a class="login-card__forgot" href="#" (click)="$event.preventDefault()">
+          {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
+        </a>
+
+        <div class="login-card__divider">
+          <span>{{ 'LOGIN.CONTINUE_WITH' | translate }}</span>
+        </div>
+
+        <div class="lang-switcher" role="group" aria-label="Language">
+          @for (lang of languageService.languages; track lang) {
+            <button
+              type="button"
+              class="lang-switcher__btn"
+              [class.lang-switcher__btn--active]="languageService.currentLang() === lang"
+              (click)="setLanguage(lang)"
+            >
+              {{ lang | uppercase }}
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <path
+        class="login-wave__back"
+        d="M0 88c180 48 320 96 520 86 210-10 320-78 520-70 150 6 280 42 400 62v54H0V88z"
+      />
+      <path
+        class="login-wave__front"
+        d="M0 128c160 36 300 72 500 64 220-10 340-58 540-50 140 6 260 34 400 48v30H0v-92z"
+      />
+    </svg>
+  </div>
+
+  <footer class="login-footer">
+    <div class="login-footer__inner">
+      <div class="login-footer__brand">
+        <img
+          class="panama-flag"
+          src="/assets/images/flags/belize.svg"
+          width="28"
+          height="19"
+          alt=""
+          decoding="async"
+        />
+        <span>{{ 'APP.COUNCIL' | translate }}</span>
+      </div>
+
+      <div class="login-footer__links">
+        <svg class="login-footer__pulse" viewBox="0 0 28 14" aria-hidden="true">
+          <path
+            d="M1 7h5l2-4 3 8 3-8 2 4h7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>{{ 'LOGIN.FOOTER.PEOPLE' | translate }}</span>
+        <i>|</i>
+        <span>{{ 'LOGIN.FOOTER.SUPPLIES' | translate }}</span>
+        <i>|</i>
+        <span>{{ 'LOGIN.FOOTER.TRANSPARENCY' | translate }}</span>
+        <i>|</i>
+        <span>{{ 'LOGIN.FOOTER.SLOGAN' | translate }}</span>
+      </div>
+    </div>
+  </footer>
+</section>

@@ -1,0 +1,131 @@
+{
+  "APP": {
+    "NAME": "BMRP-Puntagorda",
+    "TAGLINE": "Plataforma Municipal de Ingresos de Belice",
+    "COUNCIL": "Consejo Municipal de Punta Gorda",
+    "FOOTER_LEFT": "© 2024 Consejo Municipal de Punta Gorda. Todos los derechos reservados.",
+    "FOOTER_RIGHT": "💚 Construyendo un mejor Punta Gorda, juntos."
+  },
+  "LOGIN": {
+    "WELCOME": "Bienvenido a",
+    "HEADLINE": "Ingresos municipales, impuestos prediales y licencias para el Consejo de Punta Gorda.",
+    "FEATURES": {
+      "MEDICINES": "Impuesto Predial",
+      "PURCHASES": "Licencias Comerciales",
+      "HOSPITALS": "Pagos y Recibos",
+      "TRANSPARENCY": "Reportes y Analítica"
+    },
+    "FOOTER": {
+      "PEOPLE": "CIUDADANOS",
+      "SUPPLIES": "INGRESOS",
+      "TRANSPARENCY": "TRANSPARENCIA",
+      "SLOGAN": "UN PUNTA GORDA MÁS FUERTE"
+    },
+    "USERNAME": "Usuario",
+    "USERNAME_PLACEHOLDER": "Ingrese su usuario",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_PLACEHOLDER": "Ingrese su contraseña",
+    "SUBMIT": "Iniciar sesión",
+    "FORGOT_PASSWORD": "¿Olvidó su contraseña?",
+    "CONTINUE_WITH": "O continuar con",
+    "SHOW_PASSWORD": "Mostrar contraseña",
+    "HIDE_PASSWORD": "Ocultar contraseña",
+    "ERRORS": {
+      "REQUIRED_USERNAME": "El usuario es obligatorio",
+      "REQUIRED_PASSWORD": "La contraseña es obligatoria"
+    }
+  },
+  "NAV": {
+    "MAIN": "Principal",
+    "DASHBOARD": "Panel",
+    "SEARCH": "Buscar Impuesto / Factura",
+    "PROPERTIES": "Propiedades",
+    "TAXPAYERS": "Contribuyentes",
+    "INVOICES": "Facturas",
+    "PAYMENTS": "Pagos",
+    "RECEIPTS": "Recibos",
+    "PROPERTY_TAX": "Impuesto Predial",
+    "TRADE_LICENSE": "Licencia Comercial",
+    "BUSINESS_LICENSE": "Licencia de Negocio",
+    "REPORTS": "Reportes y Analítica",
+    "USERS": "Usuarios y Roles",
+    "SETTINGS": "Configuración",
+    "AUDIT": "Registros de Auditoría",
+    "NOTIFICATIONS": "Notificaciones",
+    "DOCUMENTS": "Centro de Documentos",
+    "INTEGRATIONS": "Integración y APIs",
+    "COLLAPSE": "Contraer menú"
+  },
+  "DASHBOARD": {
+    "WELCOME": "¡Bienvenido de nuevo, {{name}}!",
+    "SUBTITLE": "Esto es lo que ocurre hoy en Punta Gorda.",
+    "VS_APR": "vs Abr 2024",
+    "COLLECTION_TITLE": "Resumen de Cobros",
+    "SOURCE_TITLE": "Cobros por Fuente (MTD)",
+    "RECENT_TITLE": "Transacciones Recientes",
+    "OUTSTANDING_TITLE": "Cuentas Pendientes Principales",
+    "VIEW_ALL": "Ver todo",
+    "TOTAL": "Total",
+    "KPI": {
+      "COLLECTIONS": "Cobros Totales (MTD)",
+      "INVOICES": "Facturas Totales (MTD)",
+      "OUTSTANDING": "Monto Pendiente",
+      "PROPERTIES": "Propiedades Totales"
+    },
+    "TREND": {
+      "CURRENT": "Cobros (BZD)",
+      "PREVIOUS": "Mes Anterior (BZD)"
+    },
+    "SOURCES": {
+      "PROPERTY_TAX": "Impuesto Predial",
+      "TRADE_LICENSE": "Licencia Comercial",
+      "BUSINESS_LICENSE": "Licencia de Negocio",
+      "MARKET_FEES": "Tarifas de Mercado",
+      "TRAFFIC_FINES": "Multas de Tránsito",
+      "OTHER_FEES": "Otros Cargos"
+    },
+    "TABLE": {
+      "INVOICE": "N.º Factura",
+      "NAME": "Nombre",
+      "TYPE": "Tipo",
+      "AMOUNT": "Monto",
+      "DATE": "Fecha",
+      "STATUS": "Estado",
+      "INVOICES": "Facturas"
+    },
+    "STATUS": {
+      "PAID": "Pagado",
+      "PENDING": "Pendiente"
+    },
+    "ALERTS": {
+      "TITLE": "Alertas y Notificaciones",
+      "A1_TITLE": "Cuentas con alto saldo",
+      "A1_MSG": "Varias cuentas superan el umbral pendiente.",
+      "A2_TITLE": "Pago fallido",
+      "A2_MSG": "No se pudo procesar un intento de pago reciente.",
+      "A3_TITLE": "Actualización del sistema",
+      "A3_MSG": "Mantenimiento programado para el 18 de mayo.",
+      "T1": "hace 10 min",
+      "T2": "hace 45 min",
+      "T3": "hace 2 horas"
+    },
+    "ACTIONS": {
+      "TITLE": "Acciones Rápidas",
+      "CREATE_INVOICE": "Crear Factura",
+      "SEARCH_PROPERTY": "Buscar Propiedad",
+      "RECORD_PAYMENT": "Registrar Pago",
+      "GENERATE_RECEIPT": "Generar Recibo",
+      "ADD_PROPERTY": "Agregar Propiedad",
+      "ADD_TAXPAYER": "Agregar Contribuyente"
+    }
+  },
+  "COMMON": {
+    "LOADING": "Cargando...",
+    "VIEW": "Ver",
+    "EDIT": "Editar",
+    "MORE": "Más",
+    "CANCEL": "Cancelar",
+    "CLOSE": "Cerrar",
+    "COMING_SOON": "Este módulo estará disponible pronto."
+  }
+}

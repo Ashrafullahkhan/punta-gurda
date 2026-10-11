@@ -1,0 +1,23 @@
+<div
+  class="app-shell"
+  [class.app-shell--sidebar-open]="layout.sidebarOpen()"
+  [class.app-shell--collapsed]="layout.sidebarCollapsed()"
+>
+  <app-header />
+
+  <button
+    type="button"
+    class="app-shell__backdrop"
+    [class.app-shell__backdrop--visible]="layout.sidebarOpen()"
+    (click)="closeSidebar()"
+    [attr.aria-hidden]="!layout.sidebarOpen()"
+    tabindex="-1"
+  ></button>
+
+  <div class="app-shell__body">
+    <app-sidebar />
+    <main class="app-shell__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

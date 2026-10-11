@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.app-shell {
+  --shell-sidebar-width: var(--mc-sidebar-width);
+
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--mc-bg);
+  color: var(--mc-text);
+
+  &--collapsed {
+    --shell-sidebar-width: 84px;
+  }
+}
+
+.app-shell__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(15, 23, 42, 0.45);
+  cursor: pointer;
+}
+
+.app-shell__body {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.app-shell__content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.55rem 0.7rem 0.6rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 102, 255, 0.04), transparent 28%),
+    var(--mc-bg);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+
+  > *:not(router-outlet) {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.45);
+    border-radius: 999px;
+  }
+}
+
+@media (min-width: 1101px) {
+  .app-shell__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0.45rem 0.6rem;
+
+    > *:not(router-outlet) {
+      flex: 1 1 auto;
+      min-height: 0;
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    --shell-sidebar-width: 0px;
+  }
+
+  .app-shell__backdrop--visible {
+    display: block;
+  }
+
+  .app-shell__content {
+    padding: 0.9rem 0.85rem 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell__content {
+    padding: 0.8rem 0.75rem 1.1rem;
+  }
+}

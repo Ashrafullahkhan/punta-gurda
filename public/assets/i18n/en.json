@@ -1,0 +1,131 @@
+{
+  "APP": {
+    "NAME": "BMRP-Puntagorda",
+    "TAGLINE": "Belize Municipal Revenue Platform",
+    "COUNCIL": "Punta Gorda Town Council",
+    "FOOTER_LEFT": "© 2024 Punta Gorda Town Council. All rights reserved.",
+    "FOOTER_RIGHT": "💚 Building a better Punta Gorda, together."
+  },
+  "LOGIN": {
+    "WELCOME": "Welcome to",
+    "HEADLINE": "Municipal revenue, property tax, and licensing for Punta Gorda Town Council.",
+    "FEATURES": {
+      "MEDICINES": "Property Tax",
+      "PURCHASES": "Trade & Business Licenses",
+      "HOSPITALS": "Payments & Receipts",
+      "TRANSPARENCY": "Reports & Analytics"
+    },
+    "FOOTER": {
+      "PEOPLE": "CITIZENS",
+      "SUPPLIES": "REVENUE",
+      "TRANSPARENCY": "TRANSPARENCY",
+      "SLOGAN": "A STRONGER PUNTA GORDA"
+    },
+    "USERNAME": "Username",
+    "USERNAME_PLACEHOLDER": "Enter your username",
+    "PASSWORD": "Password",
+    "PASSWORD_PLACEHOLDER": "Enter your password",
+    "SUBMIT": "Sign In",
+    "FORGOT_PASSWORD": "Forgot your password?",
+    "CONTINUE_WITH": "Or continue with",
+    "SHOW_PASSWORD": "Show password",
+    "HIDE_PASSWORD": "Hide password",
+    "ERRORS": {
+      "REQUIRED_USERNAME": "Username is required",
+      "REQUIRED_PASSWORD": "Password is required"
+    }
+  },
+  "NAV": {
+    "MAIN": "Main",
+    "DASHBOARD": "Dashboard",
+    "SEARCH": "Search Tax / Invoice",
+    "PROPERTIES": "Properties",
+    "TAXPAYERS": "Taxpayers",
+    "INVOICES": "Invoices",
+    "PAYMENTS": "Payments",
+    "RECEIPTS": "Receipts",
+    "PROPERTY_TAX": "Property Tax",
+    "TRADE_LICENSE": "Trade License",
+    "BUSINESS_LICENSE": "Business License",
+    "REPORTS": "Reports & Analytics",
+    "USERS": "Users & Roles",
+    "SETTINGS": "System Settings",
+    "AUDIT": "Audit Logs",
+    "NOTIFICATIONS": "Notifications",
+    "DOCUMENTS": "Document Center",
+    "INTEGRATIONS": "Integration & APIs",
+    "COLLAPSE": "Collapse Menu"
+  },
+  "DASHBOARD": {
+    "WELCOME": "Welcome back, {{name}}!",
+    "SUBTITLE": "Here's what's happening in Punta Gorda today.",
+    "VS_APR": "vs Apr 2024",
+    "COLLECTION_TITLE": "Collection Overview",
+    "SOURCE_TITLE": "Collection by Source (MTD)",
+    "RECENT_TITLE": "Recent Transactions",
+    "OUTSTANDING_TITLE": "Top Outstanding Accounts",
+    "VIEW_ALL": "View all",
+    "TOTAL": "Total",
+    "KPI": {
+      "COLLECTIONS": "Total Collections (MTD)",
+      "INVOICES": "Total Invoices (MTD)",
+      "OUTSTANDING": "Outstanding Amount",
+      "PROPERTIES": "Total Properties"
+    },
+    "TREND": {
+      "CURRENT": "Collections (BZD)",
+      "PREVIOUS": "Previous Month (BZD)"
+    },
+    "SOURCES": {
+      "PROPERTY_TAX": "Property Tax",
+      "TRADE_LICENSE": "Trade License",
+      "BUSINESS_LICENSE": "Business License",
+      "MARKET_FEES": "Market Fees",
+      "TRAFFIC_FINES": "Traffic Fines",
+      "OTHER_FEES": "Other Fees"
+    },
+    "TABLE": {
+      "INVOICE": "Invoice No",
+      "NAME": "Name",
+      "TYPE": "Type",
+      "AMOUNT": "Amount",
+      "DATE": "Date",
+      "STATUS": "Status",
+      "INVOICES": "Invoices"
+    },
+    "STATUS": {
+      "PAID": "Paid",
+      "PENDING": "Pending"
+    },
+    "ALERTS": {
+      "TITLE": "Alerts & Notifications",
+      "A1_TITLE": "High Outstanding Accounts",
+      "A1_MSG": "Several accounts exceed the outstanding threshold.",
+      "A2_TITLE": "Payment Failed",
+      "A2_MSG": "A recent payment attempt could not be processed.",
+      "A3_TITLE": "System Update",
+      "A3_MSG": "Scheduled maintenance for May 18.",
+      "T1": "10 min ago",
+      "T2": "45 min ago",
+      "T3": "2 hours ago"
+    },
+    "ACTIONS": {
+      "TITLE": "Quick Actions",
+      "CREATE_INVOICE": "Create Invoice",
+      "SEARCH_PROPERTY": "Search Property",
+      "RECORD_PAYMENT": "Record Payment",
+      "GENERATE_RECEIPT": "Generate Receipt",
+      "ADD_PROPERTY": "Add New Property",
+      "ADD_TAXPAYER": "Add New Taxpayer"
+    }
+  },
+  "COMMON": {
+    "LOADING": "Loading...",
+    "VIEW": "View",
+    "EDIT": "Edit",
+    "MORE": "More",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close",
+    "COMING_SOON": "This module is coming soon."
+  }
+}

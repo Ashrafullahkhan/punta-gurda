@@ -1,0 +1,84 @@
+/* BMRP-Puntagorda design tokens — light theme (dark theme ready via [data-theme='dark']) */
+:root,
+[data-theme='light'] {
+  /* Brand */
+  --mc-primary: #002d62;
+  --mc-primary-hover: #002147;
+  --mc-primary-soft: #e8f1ff;
+  --mc-secondary: #002d62;
+  --mc-secondary-hover: #002147;
+  --mc-accent: #0d9488;
+
+  /* Semantic */
+  --mc-success: #16a34a;
+  --mc-success-soft: #dcfce7;
+  --mc-error: #ef4444;
+  --mc-error-soft: #fee2e2;
+  --mc-warning: #f59e0b;
+  --mc-warning-soft: #fef3c7;
+  --mc-info: #8b5cf6;
+  --mc-info-soft: #ede9fe;
+
+  /* Surfaces */
+  --mc-bg: #f8fafc;
+  --mc-surface: #ffffff;
+  --mc-surface-elevated: #ffffff;
+  --mc-border: #e2e8f0;
+  --mc-border-strong: #cbd5e1;
+
+  /* Text */
+  --mc-text: #0f172a;
+  --mc-text-secondary: #475569;
+  --mc-text-muted: #64748b;
+  --mc-text-inverse: #ffffff;
+
+  /* Sidebar / chrome */
+  --mc-sidebar-bg: #f8fafc;
+  --mc-sidebar-text: #475569;
+  --mc-sidebar-text-active: #ffffff;
+  --mc-sidebar-active: #002d62;
+  --mc-header-overlay: rgba(0, 45, 98, 0.55);
+
+  /* Effects */
+  --mc-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --mc-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --mc-shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --mc-radius-sm: 6px;
+  --mc-radius-md: 10px;
+  --mc-radius-lg: 14px;
+  --mc-radius-full: 999px;
+
+  /* Layout */
+  --mc-sidebar-width: 260px;
+  --mc-header-height: 72px;
+  --mc-right-panel-width: 300px;
+
+  /* Typography */
+  --mc-font: 'Inter', 'Montserrat', 'Segoe UI', sans-serif;
+  --mc-fs-h1: 2rem;
+  --mc-fs-h2: 1.5rem;
+  --mc-fs-h3: 1.25rem;
+  --mc-fs-h4: 1rem;
+  --mc-fs-body: 0.875rem;
+  --mc-fs-caption: 0.75rem;
+}
+
+/* Dark theme placeholders — wire later */
+[data-theme='dark'] {
+  --mc-bg: #0b1220;
+  --mc-surface: #111827;
+  --mc-surface-elevated: #1a2332;
+  --mc-border: #243044;
+  --mc-border-strong: #334155;
+  --mc-text: #f1f5f9;
+  --mc-text-secondary: #cbd5e1;
+  --mc-text-muted: #94a3b8;
+  --mc-primary-soft: rgba(0, 102, 255, 0.18);
+  --mc-success-soft: rgba(22, 163, 74, 0.18);
+  --mc-error-soft: rgba(239, 68, 68, 0.18);
+  --mc-warning-soft: rgba(245, 158, 11, 0.18);
+  --mc-info-soft: rgba(139, 92, 246, 0.18);
+  --mc-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --mc-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --mc-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+}

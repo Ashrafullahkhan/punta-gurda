@@ -1,0 +1,247 @@
+<section class="req-page">
+  <div class="req-page__top">
+    <div>
+      <nav class="req-breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/app/dashboard">{{ 'REQUISITIONS.BREADCRUMB.HOME' | translate }}</a>
+        <svg lucideChevronRight [size]="14" [strokeWidth]="2"></svg>
+        <span>{{ 'NAV.REQUISITIONS' | translate }}</span>
+      </nav>
+      <h1>{{ 'NAV.REQUISITIONS' | translate }}</h1>
+      <p>{{ 'REQUISITIONS.SUBTITLE' | translate }}</p>
+    </div>
+
+    <button type="button" class="mc-btn mc-btn--primary" (click)="openCreateRequisition()">
+      <svg lucidePlus [size]="18" [strokeWidth]="2"></svg>
+      {{ 'REQUISITIONS.CREATE' | translate }}
+    </button>
+  </div>
+
+  <section class="mc-card req-filters">
+    <div class="req-filters__grid">
+      <label class="req-field req-field--search">
+        <span>{{ 'REQUISITIONS.FILTERS.SEARCH' | translate }}</span>
+        <p-iconfield>
+          <p-inputicon>
+            <svg lucideSearch [size]="16" [strokeWidth]="1.9"></svg>
+          </p-inputicon>
+          <input
+            pInputText
+            type="text"
+            [ngModel]="searchQuery()"
+            (ngModelChange)="searchQuery.set($event)"
+            [placeholder]="'REQUISITIONS.FILTERS.SEARCH_PLACEHOLDER' | translate"
+          />
+        </p-iconfield>
+      </label>
+
+      <label class="req-field">
+        <span>{{ 'REQUISITIONS.FILTERS.HOSPITAL' | translate }}</span>
+        <p-select
+          [options]="hospitals"
+          [ngModel]="hospital()"
+          (ngModelChange)="hospital.set($event)"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+          [placeholder]="'REQUISITIONS.FILTERS.HOSPITAL_PLACEHOLDER' | translate"
+          styleClass="req-select"
+        />
+      </label>
+
+      <label class="req-field">
+        <span>{{ 'REQUISITIONS.FILTERS.STATUS' | translate }}</span>
+        <p-select
+          [options]="statuses"
+          [ngModel]="status()"
+          (ngModelChange)="onStatusChange($event)"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+          [placeholder]="'REQUISITIONS.FILTERS.STATUS_PLACEHOLDER' | translate"
+          styleClass="req-select"
+        />
+      </label>
+
+      <label class="req-field">
+        <span>{{ 'REQUISITIONS.FILTERS.TYPE' | translate }}</span>
+        <p-select
+          [options]="types"
+          [ngModel]="type()"
+          (ngModelChange)="type.set($event)"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+          [placeholder]="'REQUISITIONS.FILTERS.TYPE_PLACEHOLDER' | translate"
+          styleClass="req-select"
+        />
+      </label>
+
+      <label class="req-field req-field--dates">
+        <span>{{ 'REQUISITIONS.FILTERS.DATE_RANGE' | translate }}</span>
+        <p-datepicker
+          [ngModel]="dateRange()"
+          (ngModelChange)="dateRange.set($event)"
+          selectionMode="range"
+          [readonlyInput]="true"
+          [showIcon]="true"
+          appendTo="body"
+          dateFormat="mm/dd/yy"
+          [placeholder]="'REQUISITIONS.FILTERS.DATE_PLACEHOLDER' | translate"
+          styleClass="req-datepicker"
+          inputStyleClass="req-datepicker-input"
+        />
+      </label>
+    </div>
+
+    <div class="req-filters__actions">
+      <button
+        type="button"
+        class="mc-btn mc-btn--ghost req-more"
+        [class.req-more--open]="moreFiltersOpen()"
+        [attr.aria-expanded]="moreFiltersOpen()"
+        (click)="toggleMoreFilters()"
+      >
+        <svg lucideSlidersHorizontal [size]="16" [strokeWidth]="1.9"></svg>
+        {{ 'REQUISITIONS.FILTERS.MORE' | translate }}
+      </button>
+      <div class="req-filters__buttons">
+        <button type="button" class="mc-btn mc-btn--outline" (click)="clearFilters()">
+          {{ 'REQUISITIONS.FILTERS.CLEAR' | translate }}
+        </button>
+        <button type="button" class="mc-btn mc-btn--primary" (click)="applySearch()">
+          <svg lucideFilter [size]="16" [strokeWidth]="2"></svg>
+          {{ 'REQUISITIONS.FILTERS.SEARCH_BTN' | translate }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  @if (moreFiltersOpen()) {
+  <div class="req-tabs" role="tablist" aria-label="Status filters">
+    @for (tab of statusTabs; track tab.id) {
+      <button
+        type="button"
+        class="req-tab"
+        [class.req-tab--active]="activeTab() === tab.id"
+        [attr.data-tone]="tab.id"
+        (click)="setTab(tab.id)"
+      >
+        <span class="req-tab__label">{{ tab.labelKey | translate }}</span>
+        <span class="req-tab__count">{{ tab.count | number }}</span>
+      </button>
+    }
+  </div>
+  }
+
+  <section class="mc-card req-table-card">
+    <header class="req-table-card__header">
+      <h2>{{ 'REQUISITIONS.TABLE.TITLE' | translate }}</h2>
+      <div class="req-table-card__tools">
+        <button type="button" class="mc-btn mc-btn--outline mc-btn--sm">
+          <svg lucideDownload [size]="15" [strokeWidth]="1.9"></svg>
+          {{ 'REQUISITIONS.TABLE.EXPORT' | translate }}
+        </button>
+        <button type="button" class="mc-icon-btn" [attr.aria-label]="'REQUISITIONS.TABLE.SETTINGS' | translate">
+          <svg lucideSettings2 [size]="18" [strokeWidth]="1.8"></svg>
+        </button>
+      </div>
+    </header>
+
+    <p-table
+      [value]="filteredRows()"
+      [(selection)]="selectedRows"
+      dataKey="id"
+      [paginator]="true"
+      [rows]="rowsPerPage()"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [showCurrentPageReport]="true"
+      [showFirstLastIcon]="true"
+      [pageLinks]="5"
+      paginatorStyleClass="req-paginator"
+      paginatorDropdownAppendTo="body"
+      [currentPageReportTemplate]="'REQUISITIONS.TABLE.SHOWING' | translate"
+      [tableStyle]="{ width: '100%', 'min-width': '88rem' }"
+      styleClass="req-table"
+      [rowHover]="true"
+      [alwaysShowPaginator]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3%">
+            <p-tableHeaderCheckbox />
+          </th>
+          <th pSortableColumn="number" style="width: 13%">
+            {{ 'REQUISITIONS.TABLE.NUMBER' | translate }}
+            <p-sortIcon field="number" />
+          </th>
+          <th pSortableColumn="date" style="width: 8%">
+            {{ 'REQUISITIONS.TABLE.DATE' | translate }}
+            <p-sortIcon field="date" />
+          </th>
+          <th style="width: 16%">{{ 'REQUISITIONS.TABLE.TITLE_DESC' | translate }}</th>
+          <th pSortableColumn="hospital" style="width: 12%">
+            {{ 'REQUISITIONS.TABLE.HOSPITAL' | translate }}
+            <p-sortIcon field="hospital" />
+          </th>
+          <th style="width: 9%">{{ 'REQUISITIONS.TABLE.TYPE' | translate }}</th>
+          <th style="width: 8%">{{ 'REQUISITIONS.TABLE.STATUS' | translate }}</th>
+          <th pSortableColumn="amount" class="is-right" style="width: 11%">
+            {{ 'REQUISITIONS.TABLE.AMOUNT' | translate }}
+            <p-sortIcon field="amount" />
+          </th>
+          <th style="width: 11%">{{ 'REQUISITIONS.TABLE.REQUESTED_BY' | translate }}</th>
+          <th class="is-center" style="width: 9%">{{ 'REQUISITIONS.TABLE.ACTIONS' | translate }}</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="row" />
+          </td>
+          <td class="req-col-number">
+            <a class="req-number" href="#" (click)="$event.preventDefault()">
+              <svg lucideFileText [size]="15" [strokeWidth]="1.9"></svg>
+              {{ row.number }}
+            </a>
+          </td>
+          <td>{{ row.date | date: 'MM/dd/yyyy' }}</td>
+          <td class="req-col-title">
+            <div class="req-title-cell">
+              <strong [attr.title]="row.title">{{ row.title }}</strong>
+              <small [attr.title]="row.description">{{ row.description }}</small>
+            </div>
+          </td>
+          <td class="req-col-clip" [attr.title]="row.hospital">{{ row.hospital }}</td>
+          <td>{{ row.type }}</td>
+          <td>
+            <span class="mc-badge" [ngClass]="statusClass(row.status)">
+              {{ statusKey(row.status) | translate }}
+            </span>
+          </td>
+          <td class="is-right mono">{{ row.amount | currency: 'USD':'symbol':'1.2-2' }}</td>
+          <td>{{ row.requestedBy }}</td>
+          <td class="is-center req-col-actions">
+            <div class="req-row-actions">
+              <button type="button" class="mc-icon-btn" [attr.aria-label]="'COMMON.VIEW' | translate">
+                <svg lucideEye [size]="16" [strokeWidth]="1.8"></svg>
+              </button>
+              <button type="button" class="mc-icon-btn" [attr.aria-label]="'COMMON.EDIT' | translate">
+                <svg lucidePencil [size]="16" [strokeWidth]="1.8"></svg>
+              </button>
+              <button type="button" class="mc-icon-btn" [attr.aria-label]="'COMMON.MORE' | translate">
+                <svg lucideMoreVertical [size]="16" [strokeWidth]="1.8"></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="10" class="req-empty">{{ 'REQUISITIONS.TABLE.EMPTY' | translate }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+</section>

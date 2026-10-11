@@ -1,0 +1,87 @@
+<aside
+  class="sidebar"
+  [class.sidebar--collapsed]="layout.sidebarCollapsed()"
+  [class.sidebar--open]="layout.sidebarOpen()"
+>
+  @if (!layout.sidebarCollapsed() || layout.sidebarOpen()) {
+    <p class="sidebar__section">{{ 'NAV.MAIN' | translate }}</p>
+  }
+
+  <nav class="sidebar__nav" aria-label="Main">
+    @for (item of navItems; track item.route) {
+      <a
+        class="sidebar__link"
+        [routerLink]="item.route"
+        routerLinkActive="sidebar__link--active"
+        [title]="item.labelKey | translate"
+        (click)="onNavigate()"
+      >
+        @switch (item.icon) {
+          @case ('dashboard') {
+            <svg lucideLayoutDashboard [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('search') {
+            <svg lucideSearch [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('properties') {
+            <svg lucideBuilding2 [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('taxpayers') {
+            <svg lucideUsers [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('invoices') {
+            <svg lucideFileText [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('payments') {
+            <svg lucideCreditCard [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('receipts') {
+            <svg lucideReceipt [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('property-tax') {
+            <svg lucideScrollText [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('trade-license') {
+            <svg lucideStore [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('business-license') {
+            <svg lucideHandshake [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('reports') {
+            <svg lucideFileBarChart [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('users') {
+            <svg lucideShield [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('settings') {
+            <svg lucideSettings [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('audit') {
+            <svg lucideClipboardList [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('notifications') {
+            <svg lucideBell [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('documents') {
+            <svg lucideFolderOpen [size]="18" [strokeWidth]="1.8"></svg>
+          }
+          @case ('integrations') {
+            <svg lucideLink2 [size]="18" [strokeWidth]="1.8"></svg>
+          }
+        }
+        @if (!layout.sidebarCollapsed() || layout.sidebarOpen()) {
+          <span>{{ item.labelKey | translate }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar__footer">
+    <button type="button" class="sidebar__collapse" (click)="toggleCollapse()">
+      <svg lucideChevronLeft [size]="16" [strokeWidth]="2"></svg>
+      @if (!layout.sidebarCollapsed() || layout.sidebarOpen()) {
+        <span>{{ 'NAV.COLLAPSE' | translate }}</span>
+      }
+    </button>
+  </div>
+</aside>

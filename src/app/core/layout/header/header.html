@@ -1,0 +1,66 @@
+<header class="app-header">
+  <div class="app-header__inner">
+    <div class="app-header__brand-wrap">
+      <button
+        type="button"
+        class="mc-icon-btn app-header__menu"
+        (click)="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <svg lucideMenu [size]="22" [strokeWidth]="1.9"></svg>
+      </button>
+
+      <img
+        class="app-header__logo"
+        src="/assets/images/logos/punta-gorda-seal.jpg"
+        width="56"
+        height="56"
+        alt="Punta Gorda Town Council"
+        decoding="async"
+      />
+
+      <div class="app-header__brand">
+        <span class="app-header__name">BMRP-Puntagorda</span>
+        <span class="app-header__tag">
+          <span>{{ 'APP.TAGLINE' | translate }}</span>
+          <img
+            class="app-header__flag"
+            src="/assets/images/flags/belize.svg"
+            width="18"
+            height="12"
+            alt="Belize"
+            decoding="async"
+          />
+        </span>
+      </div>
+    </div>
+
+    <div class="app-header__actions">
+      <button type="button" class="mc-icon-btn app-header__icon-btn" aria-label="Notifications">
+        <svg lucideBell [size]="20" [strokeWidth]="1.8"></svg>
+        <span class="app-header__badge">8</span>
+      </button>
+
+      <button type="button" class="mc-icon-btn app-header__icon-btn" aria-label="Messages">
+        <svg lucideMail [size]="20" [strokeWidth]="1.8"></svg>
+        <span class="app-header__badge">2</span>
+      </button>
+
+      <button type="button" class="app-header__user">
+        <img
+          class="app-header__avatar-img"
+          src="/assets/images/logos/punta-gorda-seal.jpg"
+          width="40"
+          height="40"
+          alt=""
+          decoding="async"
+        />
+        <span class="app-header__user-meta">
+          <strong>Admin User</strong>
+          <small>Super Administrator</small>
+        </span>
+        <svg lucideChevronDown [size]="16" [strokeWidth]="1.8"></svg>
+      </button>
+    </div>
+  </div>
+</header>

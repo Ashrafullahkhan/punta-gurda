@@ -1,0 +1,385 @@
+<div class="amd">
+  <header class="amd__header">
+    <div class="amd__title-wrap">
+      <span class="amd__title-icon" aria-hidden="true">
+        <svg lucideBox [size]="22" [strokeWidth]="1.9"></svg>
+      </span>
+      <div>
+        <h2>{{ 'ADD_MATERIAL.TITLE' | translate }}</h2>
+        <p>{{ 'ADD_MATERIAL.SUBTITLE' | translate }}</p>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="mc-icon-btn amd__close"
+      [attr.aria-label]="'COMMON.CLOSE' | translate"
+      (click)="close()"
+    >
+      <svg lucideX [size]="20" [strokeWidth]="2"></svg>
+    </button>
+  </header>
+
+  <div class="amd__body">
+    <div class="amd__form">
+      <section class="amd-section">
+        <header class="amd-section__head">
+          <svg lucideInfo [size]="18" [strokeWidth]="1.9"></svg>
+          <div>
+            <h3>{{ 'ADD_MATERIAL.SECTIONS.BASIC' | translate }}</h3>
+            <p>{{ 'ADD_MATERIAL.SECTIONS.BASIC_DESC' | translate }}</p>
+          </div>
+        </header>
+
+        <div class="amd-grid amd-grid--2">
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.NAME' | translate }}
+              <em>*</em>
+            </span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="name()"
+              (ngModelChange)="name.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.NAME' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.CATEGORY' | translate }}
+              <em>*</em>
+            </span>
+            <p-select
+              [options]="categories"
+              [ngModel]="category()"
+              (ngModelChange)="category.set($event)"
+              optionLabel="label"
+              optionValue="value"
+              appendTo="body"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.CATEGORY' | translate"
+              styleClass="amd-select"
+            />
+          </label>
+        </div>
+
+        <label class="amd-field">
+          <span>{{ 'ADD_MATERIAL.FIELDS.DESCRIPTION' | translate }}</span>
+          <textarea
+            pTextarea
+            rows="3"
+            [maxlength]="descMax"
+            [ngModel]="description()"
+            (ngModelChange)="description.set($event)"
+            [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.DESCRIPTION' | translate"
+          ></textarea>
+          <small class="amd-counter">{{ description().length }}/{{ descMax }}</small>
+        </label>
+      </section>
+
+      <section class="amd-section">
+        <header class="amd-section__head">
+          <svg lucidePackage [size]="18" [strokeWidth]="1.9"></svg>
+          <div>
+            <h3>{{ 'ADD_MATERIAL.SECTIONS.SPECS' | translate }}</h3>
+            <p>{{ 'ADD_MATERIAL.SECTIONS.SPECS_DESC' | translate }}</p>
+          </div>
+        </header>
+
+        <div class="amd-grid amd-grid--3">
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.BRAND' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="brand()"
+              (ngModelChange)="brand.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.BRAND' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.MODEL' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="model()"
+              (ngModelChange)="model.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.MODEL' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.UNIT' | translate }}
+              <em>*</em>
+            </span>
+            <p-select
+              [options]="units"
+              [ngModel]="unit()"
+              (ngModelChange)="unit.set($event)"
+              optionLabel="label"
+              optionValue="value"
+              appendTo="body"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.UNIT' | translate"
+              styleClass="amd-select"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.PACKAGE' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="packageSize()"
+              (ngModelChange)="packageSize.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.PACKAGE' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.SHELF_LIFE' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="shelfLife()"
+              (ngModelChange)="shelfLife.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.SHELF_LIFE' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.HS_CODE' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="hsCode()"
+              (ngModelChange)="hsCode.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.HS_CODE' | translate"
+            />
+          </label>
+        </div>
+      </section>
+
+      <section class="amd-section">
+        <header class="amd-section__head">
+          <svg lucideDollarSign [size]="18" [strokeWidth]="1.9"></svg>
+          <div>
+            <h3>{{ 'ADD_MATERIAL.SECTIONS.PRICING' | translate }}</h3>
+            <p>{{ 'ADD_MATERIAL.SECTIONS.PRICING_DESC' | translate }}</p>
+          </div>
+        </header>
+
+        <div class="amd-grid amd-grid--4">
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.QUANTITY' | translate }}
+              <em>*</em>
+            </span>
+            <p-inputnumber
+              [ngModel]="quantity()"
+              (ngModelChange)="quantity.set($event)"
+              [min]="0"
+              [useGrouping]="false"
+              styleClass="amd-inputnumber"
+              inputStyleClass="amd-inputnumber-input"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.UNIT_PRICE' | translate }}
+              <em>*</em>
+            </span>
+            <p-inputnumber
+              [ngModel]="unitPrice()"
+              (ngModelChange)="unitPrice.set($event)"
+              mode="decimal"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="2"
+              [min]="0"
+              styleClass="amd-inputnumber"
+              inputStyleClass="amd-inputnumber-input"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>
+              {{ 'ADD_MATERIAL.FIELDS.CURRENCY' | translate }}
+              <em>*</em>
+            </span>
+            <p-select
+              [options]="currencies"
+              [ngModel]="currency()"
+              (ngModelChange)="currency.set($event)"
+              optionLabel="label"
+              optionValue="value"
+              appendTo="body"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.CURRENCY' | translate"
+              styleClass="amd-select"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.TOTAL' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              class="amd-readonly"
+              [value]="estimatedTotal() | number: '1.2-2'"
+              readonly
+              tabindex="-1"
+            />
+          </label>
+        </div>
+      </section>
+
+      <section class="amd-section">
+        <header class="amd-section__head">
+          <svg lucideTruck [size]="18" [strokeWidth]="1.9"></svg>
+          <div>
+            <h3>{{ 'ADD_MATERIAL.SECTIONS.SUPPLIER' | translate }}</h3>
+            <p>{{ 'ADD_MATERIAL.SECTIONS.SUPPLIER_DESC' | translate }}</p>
+          </div>
+        </header>
+
+        <div class="amd-grid amd-grid--2">
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.SUPPLIER' | translate }}</span>
+            <p-select
+              [options]="suppliers"
+              [ngModel]="supplier()"
+              (ngModelChange)="supplier.set($event)"
+              optionLabel="label"
+              optionValue="value"
+              appendTo="body"
+              [showClear]="true"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.SUPPLIER' | translate"
+              styleClass="amd-select"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.SUPPLIER_CONTACT' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="supplierContact()"
+              (ngModelChange)="supplierContact.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.SUPPLIER_CONTACT' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.SUPPLIER_PHONE' | translate }}</span>
+            <input
+              pInputText
+              type="text"
+              [ngModel]="supplierPhone()"
+              (ngModelChange)="supplierPhone.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.SUPPLIER_PHONE' | translate"
+            />
+          </label>
+
+          <label class="amd-field">
+            <span>{{ 'ADD_MATERIAL.FIELDS.SUPPLIER_EMAIL' | translate }}</span>
+            <input
+              pInputText
+              type="email"
+              [ngModel]="supplierEmail()"
+              (ngModelChange)="supplierEmail.set($event)"
+              [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.SUPPLIER_EMAIL' | translate"
+            />
+          </label>
+        </div>
+      </section>
+
+      <section class="amd-section">
+        <header class="amd-section__head">
+          <svg lucideFileText [size]="18" [strokeWidth]="1.9"></svg>
+          <div>
+            <h3>{{ 'ADD_MATERIAL.SECTIONS.ADDITIONAL' | translate }}</h3>
+            <p>{{ 'ADD_MATERIAL.SECTIONS.ADDITIONAL_DESC' | translate }}</p>
+          </div>
+        </header>
+
+        <label class="amd-field">
+          <span>
+            {{ 'ADD_MATERIAL.FIELDS.JUSTIFICATION' | translate }}
+            <em>*</em>
+          </span>
+          <textarea
+            pTextarea
+            rows="3"
+            [maxlength]="justificationMax"
+            [ngModel]="justification()"
+            (ngModelChange)="justification.set($event)"
+            [placeholder]="'ADD_MATERIAL.PLACEHOLDERS.JUSTIFICATION' | translate"
+          ></textarea>
+          <small class="amd-counter">{{ justification().length }}/{{ justificationMax }}</small>
+        </label>
+      </section>
+    </div>
+
+    <aside class="amd__aside">
+      <article class="amd-preview">
+        <header>
+          <svg lucideBox [size]="16" [strokeWidth]="1.9"></svg>
+          <h3>{{ 'ADD_MATERIAL.PREVIEW.TITLE' | translate }}</h3>
+        </header>
+        <dl>
+          <div>
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.NAME' | translate }}</dt>
+            <dd>{{ previewName() }}</dd>
+          </div>
+          <div>
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.CATEGORY' | translate }}</dt>
+            <dd>{{ previewCategory() }}</dd>
+          </div>
+          <div>
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.UNIT' | translate }}</dt>
+            <dd>{{ previewUnit() }}</dd>
+          </div>
+          <div>
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.UNIT_PRICE' | translate }}</dt>
+            <dd>{{ (unitPrice() ?? 0) | currency: (currency() || 'USD'):'symbol':'1.2-2' }}</dd>
+          </div>
+          <div>
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.QUANTITY' | translate }}</dt>
+            <dd>{{ (quantity() ?? 0) | number }}</dd>
+          </div>
+          <div class="amd-preview__total-row">
+            <dt>{{ 'ADD_MATERIAL.PREVIEW.TOTAL' | translate }}</dt>
+            <dd class="amd-preview__total">
+              {{ estimatedTotal() | currency: (currency() || 'USD'):'symbol':'1.2-2' }}
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="amd-help">
+        <header>
+          <svg lucideLightbulb [size]="16" [strokeWidth]="1.9"></svg>
+          <h3>{{ 'ADD_MATERIAL.HELP.TITLE' | translate }}</h3>
+        </header>
+        <ul>
+          <li>{{ 'ADD_MATERIAL.HELP.I1' | translate }}</li>
+          <li>{{ 'ADD_MATERIAL.HELP.I2' | translate }}</li>
+          <li>{{ 'ADD_MATERIAL.HELP.I3' | translate }}</li>
+          <li>{{ 'ADD_MATERIAL.HELP.I4' | translate }}</li>
+          <li>{{ 'ADD_MATERIAL.HELP.I5' | translate }}</li>
+        </ul>
+      </article>
+    </aside>
+  </div>
+
+  <footer class="amd__footer">
+    <button type="button" class="mc-btn mc-btn--outline" (click)="close()">
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button type="button" class="mc-btn mc-btn--primary" (click)="submit()">
+      <svg lucidePlus [size]="18" [strokeWidth]="2"></svg>
+      {{ 'ADD_MATERIAL.SUBMIT' | translate }}
+    </button>
+  </footer>
+</div>

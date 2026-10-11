@@ -1,0 +1,242 @@
+<section class="dashboard">
+  <header class="dashboard__welcome">
+    <div>
+      <h1>{{ 'DASHBOARD.WELCOME' | translate: { name: userName } }} 👋</h1>
+      <p>{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="dashboard__meta">
+      <strong>{{ today | date: 'MMMM d, y' }}</strong>
+      <span>{{ today | date: "EEEE, h:mm a" }}</span>
+    </div>
+  </header>
+
+  <div class="dashboard__banner" aria-hidden="true">
+    <img
+      src="/assets/images/punta-gorda-banner.jpg"
+      width="1600"
+      height="420"
+      alt=""
+      decoding="async"
+    />
+  </div>
+
+  <div class="kpi-grid">
+    @for (kpi of kpis; track kpi.id) {
+      <article class="mc-card kpi-card" [attr.data-tone]="kpi.tone">
+        <div class="kpi-card__top">
+          <span class="kpi-card__icon" aria-hidden="true">
+            @switch (kpiIcon(kpi.tone)) {
+              @case ('wallet') {
+                <svg lucideWallet [size]="20" [strokeWidth]="2"></svg>
+              }
+              @case ('invoice') {
+                <svg lucideFileText [size]="20" [strokeWidth]="2"></svg>
+              }
+              @case ('alert') {
+                <svg lucideAlertTriangle [size]="20" [strokeWidth]="2"></svg>
+              }
+              @default {
+                <svg lucideBuilding2 [size]="20" [strokeWidth]="2"></svg>
+              }
+            }
+          </span>
+          <svg
+            class="kpi-card__spark"
+            viewBox="0 0 56 28"
+            width="56"
+            height="28"
+            aria-hidden="true"
+          >
+            <polyline
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              [attr.points]="sparkLine(kpi.sparkline)"
+            />
+          </svg>
+        </div>
+        <p class="kpi-card__label">{{ kpi.labelKey | translate }}</p>
+        <strong class="kpi-card__value">{{ kpi.value }}</strong>
+        <p class="kpi-card__change" [class.kpi-card__change--down]="kpi.change < 0">
+          @if (kpi.change >= 0) {
+            <svg lucideTrendingUp [size]="14" [strokeWidth]="2"></svg>
+          } @else {
+            <svg lucideTrendingDown [size]="14" [strokeWidth]="2"></svg>
+          }
+          <span>
+            {{ kpi.change > 0 ? '+' : '' }}{{ kpi.change }}%
+            {{ kpi.changeLabelKey | translate }}
+          </span>
+        </p>
+      </article>
+    }
+  </div>
+
+  <div class="dashboard__mid">
+    <article class="mc-card chart-card chart-card--trend">
+      <header class="chart-card__header">
+        <h3>{{ 'DASHBOARD.COLLECTION_TITLE' | translate }}</h3>
+      </header>
+      <div
+        class="chart-host chart-host--trend"
+        echarts
+        [options]="collectionOption()"
+        [autoResize]="true"
+      ></div>
+    </article>
+
+    <article class="mc-card chart-card chart-card--donut">
+      <header class="chart-card__header">
+        <h3>{{ 'DASHBOARD.SOURCE_TITLE' | translate }}</h3>
+      </header>
+      <div class="donut-layout">
+        <div
+          class="chart-host chart-host--donut"
+          echarts
+          [options]="sourceOption()"
+          [autoResize]="true"
+        ></div>
+        <ul class="donut-legend" aria-label="Sources">
+          @for (slice of sources; track slice.labelKey) {
+            <li>
+              <i [style.background]="slice.color" aria-hidden="true"></i>
+              <span class="donut-legend__name">{{ slice.labelKey | translate }}</span>
+              <strong>{{ slice.value }}%</strong>
+            </li>
+          }
+        </ul>
+      </div>
+    </article>
+
+    <section class="mc-card side-card">
+      <h4>{{ 'DASHBOARD.ACTIONS.TITLE' | translate }}</h4>
+      <div class="quick-grid">
+        @for (action of quickActions; track action.id) {
+          <button type="button" class="quick-action" [attr.data-tone]="action.tone">
+            @switch (action.icon) {
+              @case ('invoice') {
+                <svg lucideFileText [size]="18" [strokeWidth]="1.8"></svg>
+              }
+              @case ('search') {
+                <svg lucideSearch [size]="18" [strokeWidth]="1.8"></svg>
+              }
+              @case ('payment') {
+                <svg lucideCreditCard [size]="18" [strokeWidth]="1.8"></svg>
+              }
+              @case ('receipt') {
+                <svg lucideReceipt [size]="18" [strokeWidth]="1.8"></svg>
+              }
+              @case ('property') {
+                <svg lucideBuilding2 [size]="18" [strokeWidth]="1.8"></svg>
+              }
+              @default {
+                <svg lucideUsers [size]="18" [strokeWidth]="1.8"></svg>
+              }
+            }
+            <span>{{ action.labelKey | translate }}</span>
+          </button>
+        }
+      </div>
+    </section>
+  </div>
+
+  <div class="dashboard__bottom">
+    <article class="mc-card table-card">
+      <header class="table-card__header">
+        <h3>{{ 'DASHBOARD.RECENT_TITLE' | translate }}</h3>
+        <button type="button" class="mc-btn mc-btn--outline mc-btn--sm">
+          {{ 'DASHBOARD.VIEW_ALL' | translate }}
+        </button>
+      </header>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>{{ 'DASHBOARD.TABLE.INVOICE' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.NAME' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.TYPE' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.AMOUNT' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.DATE' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.STATUS' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of transactions; track row.id) {
+              <tr>
+                <td class="mono">{{ row.invoiceNo }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.type }}</td>
+                <td class="mono">{{ row.amount }}</td>
+                <td>{{ row.date | date: 'MMM d, y' }}</td>
+                <td>
+                  <span class="mc-badge" [ngClass]="statusClass(row.status)">
+                    {{ statusKey(row.status) | translate }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="mc-card table-card table-card--outstanding">
+      <header class="table-card__header">
+        <h3>{{ 'DASHBOARD.OUTSTANDING_TITLE' | translate }}</h3>
+      </header>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>{{ 'DASHBOARD.TABLE.NAME' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.INVOICES' | translate }}</th>
+              <th>{{ 'DASHBOARD.TABLE.AMOUNT' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of outstanding; track row.id) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.invoiceCount }}</td>
+                <td class="mono amount-danger">{{ row.amount }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <section class="mc-card side-card">
+      <h4>
+        <svg lucideBell [size]="16" [strokeWidth]="2"></svg>
+        <span>{{ 'DASHBOARD.ALERTS.TITLE' | translate }}</span>
+      </h4>
+      <ul class="notify-list">
+        @for (item of alerts; track item.id) {
+          <li>
+            <i [attr.data-tone]="item.tone" aria-hidden="true">
+              @if (item.tone === 'info') {
+                <svg lucideInfo [size]="14" [strokeWidth]="2"></svg>
+              } @else {
+                <svg lucideAlertTriangle [size]="14" [strokeWidth]="2"></svg>
+              }
+            </i>
+            <div>
+              <strong>{{ item.titleKey | translate }}</strong>
+              <p>{{ item.messageKey | translate }}</p>
+              <span>{{ item.timeKey | translate }}</span>
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+  </div>
+
+  <footer class="dashboard__footer">
+    <p>{{ 'APP.FOOTER_LEFT' | translate }}</p>
+    <p>{{ 'APP.FOOTER_RIGHT' | translate }}</p>
+  </footer>
+</section>
