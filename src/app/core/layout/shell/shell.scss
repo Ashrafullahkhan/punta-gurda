@@ -47,7 +47,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 0.55rem 0.7rem 0.6rem;
+  padding: 0.2rem 0.35rem 0.35rem 0.4rem;
   background:
     radial-gradient(circle at 100% 0%, rgba(0, 102, 255, 0.04), transparent 28%),
     var(--mc-bg);
@@ -80,7 +80,7 @@
   .app-shell__content {
     display: flex;
     flex-direction: column;
-    padding: 0.45rem 0.6rem;
+    padding: 0.15rem 0.3rem 0.3rem 0.4rem;
 
     > *:not(router-outlet) {
       flex: 1 1 auto;
@@ -100,12 +100,12 @@
   }
 
   .app-shell__content {
-    padding: 0.9rem 0.85rem 1.25rem;
+    padding: 0.65rem 0.6rem 1rem;
   }
 }
 
 @media (max-width: 640px) {
   .app-shell__content {
-    padding: 0.8rem 0.75rem 1.1rem;
+    padding: 0.45rem 0.4rem 0.9rem;
   }
 }

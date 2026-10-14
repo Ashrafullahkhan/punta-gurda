@@ -59,12 +59,12 @@ export const DASHBOARD_COLLECTIONS: CollectionPoint[] = [
 ];
 
 export const DASHBOARD_SOURCES: CategorySlice[] = [
-  { labelKey: 'DASHBOARD.SOURCES.PROPERTY_TAX', value: 45.2, color: '#002D62' },
-  { labelKey: 'DASHBOARD.SOURCES.TRADE_LICENSE', value: 18.7, color: '#0D9488' },
-  { labelKey: 'DASHBOARD.SOURCES.BUSINESS_LICENSE', value: 12.9, color: '#2563EB' },
-  { labelKey: 'DASHBOARD.SOURCES.MARKET_FEES', value: 8.4, color: '#F59E0B' },
-  { labelKey: 'DASHBOARD.SOURCES.TRAFFIC_FINES', value: 6.1, color: '#EF4444' },
-  { labelKey: 'DASHBOARD.SOURCES.OTHER_FEES', value: 8.7, color: '#8B5CF6' },
+  { labelKey: 'DASHBOARD.SOURCES.PROPERTY_TAX', value: 45.2, color: '#16A34A' },
+  { labelKey: 'DASHBOARD.SOURCES.TRADE_LICENSE', value: 18.7, color: '#2563EB' },
+  { labelKey: 'DASHBOARD.SOURCES.BUSINESS_LICENSE', value: 12.9, color: '#EAB308' },
+  { labelKey: 'DASHBOARD.SOURCES.MARKET_FEES', value: 8.4, color: '#F97316' },
+  { labelKey: 'DASHBOARD.SOURCES.TRAFFIC_FINES', value: 6.1, color: '#A855F7' },
+  { labelKey: 'DASHBOARD.SOURCES.OTHER_FEES', value: 8.7, color: '#38BDF8' },
 ];
 
 export const DASHBOARD_SOURCE_TOTAL = '$285,420.50';
@@ -150,10 +150,10 @@ export const DASHBOARD_ALERTS: AlertItem[] = [
 ];
 
 export const DASHBOARD_QUICK_ACTIONS: QuickAction[] = [
-  { id: 'invoice', labelKey: 'DASHBOARD.ACTIONS.CREATE_INVOICE', icon: 'invoice', tone: 'primary' },
+  { id: 'invoice', labelKey: 'DASHBOARD.ACTIONS.CREATE_INVOICE', icon: 'invoice', tone: 'success' },
   { id: 'search', labelKey: 'DASHBOARD.ACTIONS.SEARCH_PROPERTY', icon: 'search', tone: 'info' },
-  { id: 'payment', labelKey: 'DASHBOARD.ACTIONS.RECORD_PAYMENT', icon: 'payment', tone: 'success' },
-  { id: 'receipt', labelKey: 'DASHBOARD.ACTIONS.GENERATE_RECEIPT', icon: 'receipt', tone: 'warning' },
-  { id: 'property', labelKey: 'DASHBOARD.ACTIONS.ADD_PROPERTY', icon: 'property', tone: 'purple' },
-  { id: 'taxpayer', labelKey: 'DASHBOARD.ACTIONS.ADD_TAXPAYER', icon: 'taxpayer', tone: 'teal' },
+  { id: 'payment', labelKey: 'DASHBOARD.ACTIONS.RECORD_PAYMENT', icon: 'payment', tone: 'warning' },
+  { id: 'receipt', labelKey: 'DASHBOARD.ACTIONS.GENERATE_RECEIPT', icon: 'receipt', tone: 'purple' },
+  { id: 'property', labelKey: 'DASHBOARD.ACTIONS.ADD_PROPERTY', icon: 'property', tone: 'success' },
+  { id: 'taxpayer', labelKey: 'DASHBOARD.ACTIONS.ADD_TAXPAYER', icon: 'taxpayer', tone: 'info' },
 ];

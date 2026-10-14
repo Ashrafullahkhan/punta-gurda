@@ -156,12 +156,12 @@ export function buildSourceChartOption(
     series: [
       {
         type: 'pie',
-        radius: ['58%', '78%'],
+        radius: ['62%', '84%'],
         center: ['50%', '50%'],
         avoidLabelOverlap: true,
-        padAngle: 2,
+        padAngle: 2.5,
         itemStyle: {
-          borderRadius: 4,
+          borderRadius: 5,
           borderColor: '#fff',
           borderWidth: 3,
         },
@@ -171,16 +171,16 @@ export function buildSourceChartOption(
           formatter: `{total|${totalValue}}\n{sub|${totalLabel}}`,
           rich: {
             total: {
-              fontSize: 15,
+              fontSize: 16,
               fontWeight: 800,
               color: '#0F172A',
-              lineHeight: 20,
+              lineHeight: 22,
             },
             sub: {
-              fontSize: 11,
+              fontSize: 12,
               fontWeight: 600,
-              color: '#64748B',
-              lineHeight: 16,
+              color: '#94A3B8',
+              lineHeight: 18,
             },
           },
         },

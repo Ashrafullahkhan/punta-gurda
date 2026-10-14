@@ -12,9 +12,9 @@
 
   <div class="dashboard__banner" aria-hidden="true">
     <img
-      src="/assets/images/punta-gorda-banner.jpg"
-      width="1600"
-      height="420"
+      src="/assets/images/punta-gorda-dashboard-small.jpg?v=1"
+      width="1280"
+      height="184"
       alt=""
       decoding="async"
     />
@@ -23,53 +23,64 @@
   <div class="kpi-grid">
     @for (kpi of kpis; track kpi.id) {
       <article class="mc-card kpi-card" [attr.data-tone]="kpi.tone">
-        <div class="kpi-card__top">
+        <div class="kpi-card__head">
           <span class="kpi-card__icon" aria-hidden="true">
             @switch (kpiIcon(kpi.tone)) {
-              @case ('wallet') {
-                <svg lucideWallet [size]="20" [strokeWidth]="2"></svg>
+              @case ('dollar') {
+                <svg lucideDollarSign [size]="18" [strokeWidth]="2.2"></svg>
               }
               @case ('invoice') {
-                <svg lucideFileText [size]="20" [strokeWidth]="2"></svg>
+                <svg lucideFileText [size]="18" [strokeWidth]="2.2"></svg>
               }
-              @case ('alert') {
-                <svg lucideAlertTriangle [size]="20" [strokeWidth]="2"></svg>
+              @case ('hourglass') {
+                <svg lucideHourglass [size]="18" [strokeWidth]="2.2"></svg>
               }
               @default {
-                <svg lucideBuilding2 [size]="20" [strokeWidth]="2"></svg>
+                <svg lucideHome [size]="18" [strokeWidth]="2.2"></svg>
               }
             }
           </span>
-          <svg
-            class="kpi-card__spark"
-            viewBox="0 0 56 28"
-            width="56"
-            height="28"
-            aria-hidden="true"
-          >
-            <polyline
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              [attr.points]="sparkLine(kpi.sparkline)"
-            />
-          </svg>
+          <p class="kpi-card__label">{{ kpi.labelKey | translate }}</p>
         </div>
-        <p class="kpi-card__label">{{ kpi.labelKey | translate }}</p>
+
         <strong class="kpi-card__value">{{ kpi.value }}</strong>
+
         <p class="kpi-card__change" [class.kpi-card__change--down]="kpi.change < 0">
           @if (kpi.change >= 0) {
-            <svg lucideTrendingUp [size]="14" [strokeWidth]="2"></svg>
+            <svg lucideTrendingUp [size]="13" [strokeWidth]="2.4"></svg>
           } @else {
-            <svg lucideTrendingDown [size]="14" [strokeWidth]="2"></svg>
+            <svg lucideTrendingDown [size]="13" [strokeWidth]="2.4"></svg>
           }
           <span>
-            {{ kpi.change > 0 ? '+' : '' }}{{ kpi.change }}%
+            {{ kpi.change }}%
             {{ kpi.changeLabelKey | translate }}
           </span>
         </p>
+
+        <svg
+          class="kpi-card__spark"
+          viewBox="0 0 120 28"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <polyline
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            [attr.points]="sparkLine(kpi.sparkline)"
+          />
+          @for (point of sparkPoints(kpi.sparkline); track $index) {
+            <ellipse
+              class="kpi-card__spark-point"
+              [attr.cx]="point.x"
+              [attr.cy]="point.y"
+              rx="1.35"
+              ry="2.25"
+            />
+          }
+        </svg>
       </article>
     }
   </div>
@@ -108,33 +119,41 @@
           }
         </ul>
       </div>
+      <footer class="chart-card__footer">
+        <button type="button" class="chart-card__link">
+          {{ 'DASHBOARD.VIEW_DETAILED_REPORT' | translate }}
+          <svg lucideChevronRight [size]="14" [strokeWidth]="2.4" aria-hidden="true"></svg>
+        </button>
+      </footer>
     </article>
 
-    <section class="mc-card side-card">
+    <section class="mc-card side-card side-card--actions">
       <h4>{{ 'DASHBOARD.ACTIONS.TITLE' | translate }}</h4>
       <div class="quick-grid">
         @for (action of quickActions; track action.id) {
           <button type="button" class="quick-action" [attr.data-tone]="action.tone">
-            @switch (action.icon) {
-              @case ('invoice') {
-                <svg lucideFileText [size]="18" [strokeWidth]="1.8"></svg>
+            <span class="quick-action__icon" aria-hidden="true">
+              @switch (action.icon) {
+                @case ('invoice') {
+                  <svg lucideFileText [size]="18" [strokeWidth]="2"></svg>
+                }
+                @case ('search') {
+                  <svg lucideSearch [size]="18" [strokeWidth]="2"></svg>
+                }
+                @case ('payment') {
+                  <svg lucideCreditCard [size]="18" [strokeWidth]="2"></svg>
+                }
+                @case ('receipt') {
+                  <svg lucideReceipt [size]="18" [strokeWidth]="2"></svg>
+                }
+                @case ('property') {
+                  <svg lucideHome [size]="18" [strokeWidth]="2"></svg>
+                }
+                @default {
+                  <svg lucideUsers [size]="18" [strokeWidth]="2"></svg>
+                }
               }
-              @case ('search') {
-                <svg lucideSearch [size]="18" [strokeWidth]="1.8"></svg>
-              }
-              @case ('payment') {
-                <svg lucideCreditCard [size]="18" [strokeWidth]="1.8"></svg>
-              }
-              @case ('receipt') {
-                <svg lucideReceipt [size]="18" [strokeWidth]="1.8"></svg>
-              }
-              @case ('property') {
-                <svg lucideBuilding2 [size]="18" [strokeWidth]="1.8"></svg>
-              }
-              @default {
-                <svg lucideUsers [size]="18" [strokeWidth]="1.8"></svg>
-              }
-            }
+            </span>
             <span>{{ action.labelKey | translate }}</span>
           </button>
         }

@@ -4,16 +4,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   LucideAlertTriangle,
   LucideBell,
-  LucideBuilding2,
+  LucideChevronRight,
   LucideCreditCard,
+  LucideDollarSign,
   LucideFileText,
+  LucideHome,
+  LucideHourglass,
   LucideInfo,
   LucideReceipt,
   LucideSearch,
   LucideTrendingDown,
   LucideTrendingUp,
   LucideUsers,
-  LucideWallet,
 } from '@lucide/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import type { EChartsCoreOption } from 'echarts/core';
@@ -41,16 +43,18 @@ import {
     NgxEchartsDirective,
     LucideTrendingUp,
     LucideTrendingDown,
-    LucideWallet,
+    LucideDollarSign,
     LucideFileText,
-    LucideAlertTriangle,
-    LucideBuilding2,
+    LucideHourglass,
+    LucideHome,
+    LucideChevronRight,
     LucideSearch,
     LucideCreditCard,
     LucideReceipt,
     LucideUsers,
     LucideBell,
     LucideInfo,
+    LucideAlertTriangle,
   ],
   providers: [provideEchartsCore({ echarts })],
   templateUrl: './dashboard.html',
@@ -85,13 +89,13 @@ export class DashboardComponent {
   kpiIcon(tone: KpiCard['tone']): string {
     switch (tone) {
       case 'success':
-        return 'wallet';
+        return 'dollar';
       case 'info':
         return 'invoice';
       case 'warning':
-        return 'alert';
+        return 'hourglass';
       default:
-        return 'building';
+        return 'home';
     }
   }
 
@@ -104,17 +108,17 @@ export class DashboardComponent {
   }
 
   sparkLine(values: number[]): string {
-    return this.sparkCoords(values)
+    return this.sparkPoints(values)
       .map((p) => `${p.x},${p.y}`)
       .join(' ');
   }
 
-  private sparkCoords(values: number[]): { x: number; y: number }[] {
+  sparkPoints(values: number[]): { x: number; y: number }[] {
     const max = Math.max(...values, 1);
-    const step = 56 / Math.max(values.length - 1, 1);
+    const step = 120 / Math.max(values.length - 1, 1);
     return values.map((v, i) => ({
       x: i * step,
-      y: 28 - (v / max) * 22,
+      y: 26 - (v / max) * 20,
     }));
   }
 

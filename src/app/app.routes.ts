@@ -10,13 +10,18 @@ const placeholder = (path: string, titleKey: string) => ({
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login').then((m) => m.LoginComponent),
   },
   {
     path: 'login',
+    pathMatch: 'full',
+    redirectTo: '',
+  },
+  {
+    path: 'payment',
     loadComponent: () =>
-      import('./features/auth/login/login').then((m) => m.LoginComponent),
+      import('./features/payment/payment').then((m) => m.PaymentComponent),
   },
   {
     path: 'app',
@@ -49,6 +54,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: '',
   },
 ];

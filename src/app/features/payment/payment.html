@@ -1,0 +1,411 @@
+<div class="pay-page">
+  <section class="pay-hero">
+    <img
+      class="pay-hero__bg"
+      src="/assets/images/login-bg-puntagorda.jpg?v=hd1"
+      width="2560"
+      height="1440"
+      alt=""
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div class="pay-hero__veil" aria-hidden="true"></div>
+
+    <div class="pay-hero__bar">
+      <header class="pay-brand">
+        <button type="button" class="pay-brand__btn" (click)="goHome()">
+          <img
+            class="pay-brand__seal"
+            src="/assets/images/logos/punta-gorda-seal.jpg"
+            width="58"
+            height="58"
+            alt="Punta Gorda Town Council"
+            decoding="async"
+          />
+          <div class="pay-brand__copy">
+            <strong>BMRP-Puntagorda</strong>
+            <span>
+              Belize Municipal Revenue Platform
+              <img src="/assets/images/flags/belize.svg" width="18" height="12" alt="" />
+            </span>
+          </div>
+        </button>
+      </header>
+
+      <div class="pay-top">
+        <nav class="pay-nav" aria-label="Main">
+          @for (item of navItems; track item.id) {
+            <a
+              class="pay-nav__link"
+              [class.pay-nav__link--active]="activeNav() === item.id"
+              [href]="item.href"
+              (click)="setActiveNav(item.id)"
+            >
+              {{ item.label }}
+              @if (item.hasMenu) {
+                <svg lucideChevronDown [size]="14" [strokeWidth]="2.4" aria-hidden="true"></svg>
+              }
+            </a>
+          }
+        </nav>
+
+        <button
+          type="button"
+          class="pay-nav__lang"
+          (click)="setLanguage(languageService.currentLang() === 'en' ? 'es' : 'en')"
+          aria-label="Language"
+        >
+          <svg lucideGlobe [size]="14" [strokeWidth]="2.2" aria-hidden="true"></svg>
+          <span>{{ languageService.currentLang() | uppercase }}</span>
+          <svg lucideChevronDown [size]="12" [strokeWidth]="2.4" aria-hidden="true"></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main class="pay-main">
+    <div class="pay-shell">
+      <div class="pay-intro">
+        <button type="button" class="pay-back" (click)="backToInvoice()">
+          <svg lucideArrowLeft [size]="16" [strokeWidth]="2.2"></svg>
+          Back to Invoice Details
+        </button>
+
+        <div class="pay-secure-chip">
+          <svg lucideShieldCheck [size]="16" [strokeWidth]="2.2" aria-hidden="true"></svg>
+          <span>
+            <strong>Secure Payments</strong>
+            <small>100% Safe &amp; Encrypted</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="pay-title">
+        <span class="pay-title__icon" aria-hidden="true">
+          <svg lucideCreditCard [size]="24" [strokeWidth]="2.2"></svg>
+        </span>
+        <div>
+          <h1>Make a Payment</h1>
+          <p>Secure, fast, and convenient payments for your taxes and fees.</p>
+        </div>
+      </div>
+
+      <div class="pay-board">
+        <section class="pay-form-card">
+          <div class="pay-block">
+            <h2>Select Payment Method</h2>
+            <div class="pay-methods" role="listbox" aria-label="Payment method">
+              @for (method of payMethods; track method.id) {
+                <button
+                  type="button"
+                  class="pay-method"
+                  [class.pay-method--active]="selectedMethod() === method.id"
+                  [attr.data-brand]="method.id"
+                  (click)="selectMethod(method.id)"
+                >
+                  @if (selectedMethod() === method.id) {
+                    <span class="pay-method__check" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="10" height="10" fill="none">
+                        <path
+                          d="M3.2 8.2 6.4 11.2 12.8 4.4"
+                          stroke="currentColor"
+                          stroke-width="2.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  }
+
+                  <span class="pay-method__brand" [attr.data-brand]="method.id">
+                    <img [src]="method.logo" [alt]="method.alt" />
+                  </span>
+
+                  <strong>{{ method.title }}</strong>
+                  <small>{{ method.subtitle }}</small>
+                </button>
+              }
+            </div>
+          </div>
+
+          <form class="pay-block" [formGroup]="payForm" (ngSubmit)="onPay()" novalidate>
+            <h2>Card Information</h2>
+            <div class="pay-fields pay-fields--2">
+              <label class="pay-field">
+                <span>Card Number</span>
+                <span class="pay-field__control">
+                  <input type="text" formControlName="cardNumber" placeholder="1234 5678 9012 3456" />
+                  <svg lucideCreditCard [size]="16" [strokeWidth]="2" aria-hidden="true"></svg>
+                </span>
+              </label>
+              <label class="pay-field">
+                <span>Name on Card</span>
+                <span class="pay-field__control">
+                  <input type="text" formControlName="nameOnCard" placeholder="John Smith" />
+                </span>
+              </label>
+              <label class="pay-field">
+                <span>Expiry Date (MM/YY)</span>
+                <span class="pay-field__control">
+                  <input type="text" formControlName="expiry" placeholder="MM / YY" />
+                  <svg lucideCalendar [size]="16" [strokeWidth]="2" aria-hidden="true"></svg>
+                </span>
+              </label>
+              <label class="pay-field">
+                <span>CVV</span>
+                <span class="pay-field__control">
+                  <input type="text" formControlName="cvv" placeholder="123" />
+                  <svg lucideInfo [size]="16" [strokeWidth]="2" aria-hidden="true"></svg>
+                </span>
+              </label>
+            </div>
+
+            <label class="pay-check">
+              <input
+                type="checkbox"
+                [checked]="saveCard()"
+                (change)="saveCard.set($any($event.target).checked)"
+              />
+              <span>Save this card for faster payments</span>
+            </label>
+
+            <h2 class="pay-block__spaced">Billing Address</h2>
+            <div class="pay-fields pay-fields--2">
+              <label class="pay-field">
+                <span>Email Address (For Receipt)</span>
+                <span class="pay-field__control">
+                  <input
+                    type="email"
+                    formControlName="email"
+                    placeholder="johnsmith@email.com"
+                  />
+                </span>
+              </label>
+              <label class="pay-field">
+                <span>Phone Number (Optional)</span>
+                <span class="pay-field__control pay-field__control--phone">
+                  <img src="/assets/images/flags/belize.svg" width="18" height="12" alt="" />
+                  <em>+501</em>
+                  <input type="tel" formControlName="phone" placeholder="612-3456" />
+                </span>
+              </label>
+            </div>
+
+            <div class="pay-secure">
+              <svg lucideShieldCheck [size]="18" [strokeWidth]="2.2" aria-hidden="true"></svg>
+              <p>
+                Your payment information is encrypted and secure. We do not store your card
+                details.
+              </p>
+            </div>
+
+            <div class="pay-actions">
+              <button type="button" class="pay-actions__back" (click)="backToInvoice()">
+                <svg lucideArrowLeft [size]="16" [strokeWidth]="2.2"></svg>
+                Back to Invoice Details
+              </button>
+              <button type="submit" class="pay-actions__pay">
+                <svg lucideLock [size]="18" [strokeWidth]="2.2"></svg>
+                Pay Now {{ invoice.total | currency: 'USD' : 'symbol' : '1.2-2' }} BZD
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="pay-side">
+          <article class="pay-summary">
+            <header>
+              <svg lucideFileText [size]="20" [strokeWidth]="2.2" aria-hidden="true"></svg>
+              <h2>Invoice Summary</h2>
+            </header>
+            <dl>
+              <div>
+                <dt>Invoice Number</dt>
+                <dd>{{ invoice.invoiceNumber }}</dd>
+              </div>
+              <div>
+                <dt>Property ID</dt>
+                <dd>{{ invoice.propertyId }}</dd>
+              </div>
+              <div>
+                <dt>Property Owner</dt>
+                <dd>{{ invoice.owner }}</dd>
+              </div>
+              <div>
+                <dt>Invoice Date</dt>
+                <dd>{{ invoice.invoiceDate }}</dd>
+              </div>
+              <div>
+                <dt>Due Date</dt>
+                <dd class="pay-summary__due">{{ invoice.dueDate }}</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd><span class="pay-summary__status">{{ invoice.status }}</span></dd>
+              </div>
+            </dl>
+            <p class="pay-summary__label">Total Amount Due</p>
+            <p class="pay-summary__total">
+              {{ invoice.total | currency: 'USD' : 'symbol' : '1.2-2' }}
+              <span>BZD</span>
+            </p>
+            <p class="pay-summary__alert">
+              <svg lucideClock [size]="16" [strokeWidth]="2.2" aria-hidden="true"></svg>
+              <span>
+                Due in {{ invoice.daysUntilDue }} days. Pay by {{ invoice.dueDate }} to avoid
+                penalties.
+              </span>
+            </p>
+          </article>
+
+          <article class="pay-why">
+            <h2>Why Pay Online?</h2>
+            <ul>
+              <li>
+                <span class="pay-why__icon pay-why__icon--green">
+                  <svg lucideShieldCheck [size]="16" [strokeWidth]="2.2"></svg>
+                </span>
+                <div>
+                  <strong>Secure &amp; Encrypted</strong>
+                  <small>Your payment is protected with 256-bit encryption</small>
+                </div>
+              </li>
+              <li>
+                <span class="pay-why__icon pay-why__icon--blue">
+                  <svg lucideClock [size]="16" [strokeWidth]="2.2"></svg>
+                </span>
+                <div>
+                  <strong>Instant Receipt</strong>
+                  <small>Get your official receipt instantly via email</small>
+                </div>
+              </li>
+              <li>
+                <span class="pay-why__icon pay-why__icon--purple">
+                  <svg lucideBuilding2 [size]="16" [strokeWidth]="2.2"></svg>
+                </span>
+                <div>
+                  <strong>Convenient</strong>
+                  <small>Pay anytime, anywhere, 24/7</small>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </aside>
+
+        <aside class="pay-badges" aria-label="Security highlights">
+          <div class="pay-badge pay-badge--blue">
+            <span class="pay-badge__icon" aria-hidden="true">
+              <svg lucideShieldCheck [size]="18" [strokeWidth]="2.2"></svg>
+            </span>
+            <span class="pay-badge__text">
+              <em>We Accept</em>
+              <em>Secure Payments</em>
+            </span>
+          </div>
+          <div class="pay-badge pay-badge--green">
+            <span class="pay-badge__icon" aria-hidden="true">
+              <svg lucideLock [size]="18" [strokeWidth]="2.2"></svg>
+            </span>
+            <span class="pay-badge__text">
+              <em>100% Safe &amp;</em>
+              <em>Encrypted</em>
+            </span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pay-footer" id="contact">
+    <div class="pay-footer__inner">
+      <div class="pay-footer__accept">
+        <span>We Accept</span>
+        <div class="pay-logos">
+          @for (method of paymentMethods; track method.id) {
+            <span class="pay-logo" [attr.data-brand]="method.id">
+              @switch (method.id) {
+                @case ('visa') {
+                  <span class="pay-logo__mark pay-logo__mark--visa">VISA</span>
+                }
+                @case ('mastercard') {
+                  <span class="pay-logo__mark pay-logo__mark--mc" aria-hidden="true"></span>
+                }
+                @case ('atlantic') {
+                  <span class="pay-logo__mark pay-logo__mark--stack">Atlantic<br />Bank</span>
+                }
+                @case ('belize') {
+                  <span class="pay-logo__mark pay-logo__mark--stack">Belize<br />Bank</span>
+                }
+                @case ('ekpash') {
+                  <span class="pay-logo__mark pay-logo__mark--ekpash">e-kpash</span>
+                }
+                @case ('paypal') {
+                  <span class="pay-logo__mark pay-logo__mark--paypal">PayPal</span>
+                }
+              }
+            </span>
+          }
+        </div>
+      </div>
+
+      <div class="pay-footer__item">
+        <span class="pay-footer__icon"><svg lucidePhone [size]="16" [strokeWidth]="2.2"></svg></span>
+        <div>
+          <strong>Call Us</strong>
+          <a href="tel:+5017222020">+501 722-2020</a>
+        </div>
+      </div>
+      <div class="pay-footer__item">
+        <span class="pay-footer__icon"><svg lucideMail [size]="16" [strokeWidth]="2.2"></svg></span>
+        <div>
+          <strong>Email Us</strong>
+          <a href="mailto:revenue@puntagordatc.gov.bz">revenue@puntagordatc.gov.bz</a>
+        </div>
+      </div>
+      <div class="pay-footer__item">
+        <span class="pay-footer__icon"><svg lucideMapPin [size]="16" [strokeWidth]="2.2"></svg></span>
+        <div>
+          <strong>Punta Gorda Town Council</strong>
+          <p>Punta Gorda, Belize</p>
+        </div>
+      </div>
+      <div class="pay-footer__social" aria-label="Social">
+        <a href="#" class="pay-footer__social-link pay-footer__social-link--facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M14.5 8.5V6.8c0-.8.2-1.3 1.4-1.3h1.6V2.5h-2.5C11.9 2.5 10.5 4.2 10.5 7v1.5H8.5V12h2v9.5h3.5V12h2.4l.4-3.5h-2.8z"
+            />
+          </svg>
+        </a>
+        <a href="#" class="pay-footer__social-link pay-footer__social-link--whatsapp" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.78 14.03c-.24.68-1.41 1.24-1.95 1.32-.52.08-1.18.11-1.9-.12-.44-.14-.99-.32-1.71-.63-3.01-1.3-4.97-4.34-5.12-4.54-.15-.2-1.21-1.61-1.21-3.07 0-1.46.77-2.18 1.04-2.47.27-.29.59-.37.79-.37h.57c.18 0 .43-.05.67.51.24.58.82 2 .89 2.15.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.61.17.29.76 1.25 1.63 2.03 1.12 1 2.07 1.31 2.36 1.46.29.15.46.12.63-.07.17-.2.73-.85.93-1.14.2-.29.39-.24.66-.15.27.1 1.72.81 2.01.96.29.15.49.22.56.34.07.12.07.7-.17 1.38z"
+            />
+          </svg>
+        </a>
+        <a
+          href="mailto:revenue@puntagordatc.gov.bz"
+          class="pay-footer__social-link pay-footer__social-link--email"
+          aria-label="Email"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="pay-footer__bottom">
+      <p>© 2024 Punta Gorda Town Council. All rights reserved.</p>
+      <p class="pay-footer__slogan">
+        <svg lucideHeart [size]="14" [strokeWidth]="2.2" aria-hidden="true"></svg>
+        Building a better Punta Gorda, together.
+      </p>
+    </div>
+  </footer>
+</div>

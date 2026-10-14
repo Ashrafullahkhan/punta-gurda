@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 28" role="img" aria-label="PayPal">
+  <!-- Overlapping PP monogram -->
+  <path fill="#003087" d="M12.2 2.4h6.2c4.8 0 7.6 2.5 7.1 7.4-.5 5.4-4.1 8.2-9.4 8.2H13l-1.2 7.6H7.3L12.2 2.4zm2.6 3.2-1.7 10h1.8c3.4 0 5.5-1.7 5.9-5.3.3-2.9-1.1-4.7-4.1-4.7h-1.9z"/>
+  <path fill="#009CDE" d="M18.4 1.2h6.2c4.8 0 7.6 2.5 7.1 7.4-.5 5.4-4.1 8.2-9.4 8.2H19.2l-1.2 7.6h-4.5L18.4 1.2zm2.6 3.2-1.7 10h1.8c3.4 0 5.5-1.7 5.9-5.3.3-2.9-1.1-4.7-4.1-4.7h-1.9z"/>
+  <text x="36" y="19.5" font-family="Verdana, Arial, sans-serif" font-size="14.5" font-weight="700" font-style="italic" letter-spacing="-0.3">
+    <tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan>
+  </text>
+</svg>
